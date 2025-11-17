@@ -248,23 +248,33 @@ public class AppMenu {
 
             System.out.print("Nuevo Dominio (Actual: " + v.getDominio() + "): ");
             String dominio = scanner.nextLine().toUpperCase();
-            if (!dominio.isEmpty()) v.setDominio(dominio);
+            if (!dominio.isEmpty()) {
+                v.setDominio(dominio);
+            }
 
             System.out.print("Nueva Marca (Actual: " + v.getMarca() + "): ");
             String marca = scanner.nextLine();
-            if (!marca.isEmpty()) v.setMarca(marca);
+            if (!marca.isEmpty()) {
+                v.setMarca(marca);
+            }
 
             System.out.print("Nuevo Modelo (Actual: " + v.getModelo() + "): ");
             String modelo = scanner.nextLine();
-            if (!modelo.isEmpty()) v.setModelo(modelo);
+            if (!modelo.isEmpty()) {
+                v.setModelo(modelo);
+            }
 
             System.out.print("Nuevo Nro. Chasis (Actual: " + v.getNroChasis() + "): ");
             String nroChasis = scanner.nextLine();
-            if (!nroChasis.isEmpty()) v.setNroChasis(nroChasis);
+            if (!nroChasis.isEmpty()) {
+                v.setNroChasis(nroChasis);
+            }
 
             System.out.print("Nuevo Año (Actual: " + v.getAnio() + "): ");
             String anioStr = scanner.nextLine();
-            if (!anioStr.isEmpty()) v.setAnio(Integer.parseInt(anioStr));
+            if (!anioStr.isEmpty()) {
+                v.setAnio(Integer.parseInt(anioStr));
+            }
 
             vehiculoService.actualizar(v);
             System.out.println("✅ ÉXITO: Vehículo ID " + id + " actualizado.");

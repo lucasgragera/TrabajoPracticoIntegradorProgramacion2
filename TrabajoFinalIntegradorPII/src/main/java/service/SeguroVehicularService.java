@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package service;
 
 import config.DatabaseConnection;
@@ -14,28 +10,30 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class SeguroVehicularService implements GenericService<SeguroVehicular> {
-    
+
     private SeguroVehicularDao dao = new SeguroVehicularDao();
 
     @Override
     public SeguroVehicular insertar(SeguroVehicular seguro) {
-        
+
         if (seguro.getNroPoliza() == null || seguro.getNroPoliza().trim().isEmpty()) {
             throw new ValidationException("El número de póliza es obligatorio");
         }
-        
-        Connection conn = null; 
+
+        Connection conn = null;
 
         try {
-            conn = DatabaseConnection.getConnection(); 
+            conn = DatabaseConnection.getConnection();
             conn.setAutoCommit(false);
             SeguroVehicular nuevoSeguro = dao.crear(seguro, conn);
-            conn.commit(); 
+            conn.commit();
             return nuevoSeguro;
 
         } catch (SQLException e) {
             try {
-                if (conn != null) conn.rollback(); // Deshace en caso de error
+                if (conn != null) {
+                    conn.rollback(); // Deshace en caso de error
+                }
             } catch (SQLException ex) {
                 throw new ServiceException("Error al hacer rollback", ex);
             }
@@ -51,48 +49,50 @@ public class SeguroVehicularService implements GenericService<SeguroVehicular> {
             }
         }
     }
-       
+
     //Al solamente leer no lo generamos como una transaccion
     @Override
     public SeguroVehicular getById(long id) {
-    
-    try (Connection conn = DatabaseConnection.getConnection()) {
-        return dao.leer(id, conn);
-    } catch (SQLException e) {
-        throw new ServiceException("Error al leer el seguro por ID", e);
+
+        try (Connection conn = DatabaseConnection.getConnection()) {
+            return dao.leer(id, conn);
+        } catch (SQLException e) {
+            throw new ServiceException("Error al leer el seguro por ID", e);
+        }
     }
-}
-    
+
     //Al solamente leer no lo generamos como una transaccion
     @Override
     public List<SeguroVehicular> getAll() {
-        
-    try (Connection conn = DatabaseConnection.getConnection()) {
-        return dao.leerTodos(conn);
-    } catch (SQLException e) {
-        throw new ServiceException("Error al leer todos los seguros", e);
+
+        try (Connection conn = DatabaseConnection.getConnection()) {
+            return dao.leerTodos(conn);
+        } catch (SQLException e) {
+            throw new ServiceException("Error al leer todos los seguros", e);
+        }
     }
-}
-    
+
     @Override
     public SeguroVehicular actualizar(SeguroVehicular entity) {
-        
+
         if (entity.getId() == null) {
             throw new ValidationException("No se puede actualizar un seguro con ID nulo.");
         }
-        
-        Connection conn = null; 
+
+        Connection conn = null;
 
         try {
-            conn = DatabaseConnection.getConnection(); 
+            conn = DatabaseConnection.getConnection();
             conn.setAutoCommit(false);
             SeguroVehicular actualizado = dao.actualizar(entity, conn);
-            conn.commit(); 
+            conn.commit();
             return actualizado;
 
         } catch (SQLException | ValidationException e) {
             try {
-                if (conn != null) conn.rollback(); 
+                if (conn != null) {
+                    conn.rollback();
+                }
             } catch (SQLException ex) {
                 throw new ServiceException("Error al hacer rollback en actualizar seguro", ex);
             }
@@ -111,11 +111,11 @@ public class SeguroVehicularService implements GenericService<SeguroVehicular> {
 
     @Override
     public void eliminar(long id) {
-        
-        Connection conn = null; 
+
+        Connection conn = null;
 
         try {
-            conn = DatabaseConnection.getConnection(); 
+            conn = DatabaseConnection.getConnection();
             conn.setAutoCommit(false);
 
             // Verificar si existe antes de eliminar
@@ -123,12 +123,14 @@ public class SeguroVehicularService implements GenericService<SeguroVehicular> {
             if (existente != null) {
                 dao.eliminar(id, conn);
             }
-            
-            conn.commit(); 
+
+            conn.commit();
 
         } catch (SQLException e) {
             try {
-                if (conn != null) conn.rollback();
+                if (conn != null) {
+                    conn.rollback();
+                }
             } catch (SQLException ex) {
                 throw new ServiceException("Error al hacer rollback en eliminar seguro", ex);
             }

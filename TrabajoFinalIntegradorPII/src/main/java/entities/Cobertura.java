@@ -1,7 +1,7 @@
 package entities;
 
 public enum Cobertura {
-    
+
     RC("Responsabilidad Civil"),
     TERCEROS("Terceros Completos"),
     TODO_RIESGO("Todo Riesgo");
@@ -16,11 +16,10 @@ public enum Cobertura {
         return descripcion;
     }
 
-
     @Override
     public String toString() {
-        return "Cobertura{" +
-                "descripcion='" + descripcion + '\'' +
-                '}';
+        return "Cobertura{"
+                + "descripcion='" + descripcion + '\''
+                + '}';
     }
 }

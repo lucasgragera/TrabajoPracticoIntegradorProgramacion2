@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package dao;
 
 import entities.SeguroVehicular;
@@ -15,47 +11,46 @@ import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VehiculoDao implements GenericDao<Vehiculo>{
-    
+public class VehiculoDao implements GenericDao<Vehiculo> {
+
     private static final String INSERT_SQL = "INSERT INTO Vehiculo (dominio, marca, modelo, anio, nroChasis, seguro_id, eliminado) VALUES (?, ?, ?, ?, ?, ?, ?)";
     private static final String UPDATE_SQL = "UPDATE Vehiculo SET dominio = ?, marca = ?, modelo = ?, anio = ?, nroChasis = ?, seguro_id = ? WHERE id = ?";
-    
-    // SQL con JOIN para traer el Vehiculo y su Seguro
-    private static final String SELECT_BY_ID_SQL = 
-        "SELECT v.*, s.id AS s_id, s.eliminado AS s_eliminado, s.aseguradora, s.nroPoliza, s.cobertura, s.vencimiento " +
-        "FROM Vehiculo v " +
-        "LEFT JOIN SeguroVehicular s ON v.seguro_id = s.id " +
-        "WHERE v.id = ? AND v.eliminado = false";
 
-    private static final String SELECT_ALL_SQL = 
-        "SELECT v.*, s.id AS s_id, s.eliminado AS s_eliminado, s.aseguradora, s.nroPoliza, s.cobertura, s.vencimiento " +
-        "FROM Vehiculo v " +
-        "LEFT JOIN SeguroVehicular s ON v.seguro_id = s.id " +
-        "WHERE v.eliminado = false";
-        
+    // SQL con JOIN para traer el Vehiculo y su Seguro
+    private static final String SELECT_BY_ID_SQL
+            = "SELECT v.*, s.id AS s_id, s.eliminado AS s_eliminado, s.aseguradora, s.nroPoliza, s.cobertura, s.vencimiento "
+            + "FROM Vehiculo v "
+            + "LEFT JOIN SeguroVehicular s ON v.seguro_id = s.id "
+            + "WHERE v.id = ? AND v.eliminado = false";
+
+    private static final String SELECT_ALL_SQL
+            = "SELECT v.*, s.id AS s_id, s.eliminado AS s_eliminado, s.aseguradora, s.nroPoliza, s.cobertura, s.vencimiento "
+            + "FROM Vehiculo v "
+            + "LEFT JOIN SeguroVehicular s ON v.seguro_id = s.id "
+            + "WHERE v.eliminado = false";
+
     private static final String SOFT_DELETE_SQL = "UPDATE Vehiculo SET eliminado = true WHERE id = ?";
-    
+
     // Query de validación para la regla 1-a-1
     private static final String CHECK_SEGURO_USADO_SQL = "SELECT COUNT(*) FROM Vehiculo WHERE seguro_id = ? AND eliminado = false";
     private static final String CHECK_DOMINIO_SQL = "SELECT COUNT(*) FROM Vehiculo WHERE dominio = ? AND eliminado = false";
 
-
     @Override
     public Vehiculo crear(Vehiculo vehiculo, Connection conn) throws SQLException {
         try (PreparedStatement ps = conn.prepareStatement(INSERT_SQL, Statement.RETURN_GENERATED_KEYS)) {
-            
+
             ps.setString(1, vehiculo.getDominio());
             ps.setString(2, vehiculo.getMarca());
             ps.setString(3, vehiculo.getModelo());
             ps.setInt(4, vehiculo.getAnio());
             ps.setString(5, vehiculo.getNroChasis());
-            
+
             if (vehiculo.getSeguro() != null && vehiculo.getSeguro().getId() != null) {
                 ps.setLong(6, vehiculo.getSeguro().getId());
             } else {
                 ps.setNull(6, Types.BIGINT);
             }
-            
+
             ps.setBoolean(7, false);
 
             ps.executeUpdate();
@@ -85,8 +80,7 @@ public class VehiculoDao implements GenericDao<Vehiculo>{
     @Override
     public List<Vehiculo> leerTodos(Connection conn) throws SQLException {
         List<Vehiculo> vehiculos = new ArrayList<>();
-        try (PreparedStatement ps = conn.prepareStatement(SELECT_ALL_SQL);
-             ResultSet rs = ps.executeQuery()) {
+        try (PreparedStatement ps = conn.prepareStatement(SELECT_ALL_SQL); ResultSet rs = ps.executeQuery()) {
             while (rs.next()) {
                 vehiculos.add(mapResultSetToVehiculo(rs));
             }
@@ -102,13 +96,13 @@ public class VehiculoDao implements GenericDao<Vehiculo>{
             ps.setString(3, vehiculo.getModelo());
             ps.setInt(4, vehiculo.getAnio());
             ps.setString(5, vehiculo.getNroChasis());
-            
+
             if (vehiculo.getSeguro() != null && vehiculo.getSeguro().getId() != null) {
                 ps.setLong(6, vehiculo.getSeguro().getId());
             } else {
                 ps.setNull(6, Types.BIGINT);
             }
-            
+
             ps.setLong(7, vehiculo.getId());
             ps.executeUpdate();
             return vehiculo;
@@ -117,7 +111,7 @@ public class VehiculoDao implements GenericDao<Vehiculo>{
 
     @Override
     public void eliminar(long id, Connection conn) throws SQLException {
-         try (PreparedStatement ps = conn.prepareStatement(SOFT_DELETE_SQL)) {
+        try (PreparedStatement ps = conn.prepareStatement(SOFT_DELETE_SQL)) {
             ps.setLong(1, id);
             ps.executeUpdate();
         }
@@ -132,7 +126,7 @@ public class VehiculoDao implements GenericDao<Vehiculo>{
             }
         }
     }
-    
+
     public boolean existeDominio(String dominio, Connection conn) throws SQLException {
         try (PreparedStatement ps = conn.prepareStatement(CHECK_DOMINIO_SQL)) {
             ps.setString(1, dominio);
@@ -157,12 +151,12 @@ public class VehiculoDao implements GenericDao<Vehiculo>{
         long seguroId = rs.getLong("s_id");
         if (!rs.wasNull()) { // Verifica si el LEFT JOIN trajo un seguro
             SeguroVehicular seguro = new SeguroVehicular(
-                seguroId,
-                rs.getBoolean("s_eliminado"),
-                rs.getString("aseguradora"),
-                rs.getString("nroPoliza"),
-                entities.Cobertura.valueOf(rs.getString("cobertura")),
-                rs.getDate("vencimiento").toLocalDate()
+                    seguroId,
+                    rs.getBoolean("s_eliminado"),
+                    rs.getString("aseguradora"),
+                    rs.getString("nroPoliza"),
+                    entities.Cobertura.valueOf(rs.getString("cobertura")),
+                    rs.getDate("vencimiento").toLocalDate()
             );
             vehiculo.setSeguro(seguro);
         }

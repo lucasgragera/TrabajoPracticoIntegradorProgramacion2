@@ -1,12 +1,11 @@
 package entities;
 
 /**
- * Clase Vehiculo (A)
- * esta clase representa un vehículo en el sistema
- * contiene la relación 1→1 unidireccional hacia SeguroVehicular
+ * Clase Vehiculo (A) esta clase representa un vehículo en el sistema contiene
+ * la relación 1→1 unidireccional hacia SeguroVehicular
  */
-
 public class Vehiculo {
+
     private Long id;
     private Boolean eliminado;
     private String dominio;
@@ -98,15 +97,15 @@ public class Vehiculo {
 
     @Override
     public String toString() {
-        return "Vehiculo{" +
-                "id=" + id +
-                ", eliminado=" + eliminado +
-                ", dominio='" + dominio + '\'' +
-                ", marca='" + marca + '\'' +
-                ", modelo='" + modelo + '\'' +
-                ", anio=" + anio +
-                ", nroChasis='" + nroChasis + '\'' +
-                ", seguro=" + seguro +
-                '}';
+        return "Vehiculo{"
+                + "id=" + id
+                + ", eliminado=" + eliminado
+                + ", dominio='" + dominio + '\''
+                + ", marca='" + marca + '\''
+                + ", modelo='" + modelo + '\''
+                + ", anio=" + anio
+                + ", nroChasis='" + nroChasis + '\''
+                + ", seguro=" + seguro
+                + '}';
     }
 }

@@ -3,12 +3,11 @@ package entities;
 import java.time.LocalDate;
 
 /**
- * clase SeguroVehicular (B)
- * esta clase representa el seguro de un vehículo
- * es la clase referenciada en la relación 1→1 unidireccional
+ * clase SeguroVehicular (B) esta clase representa el seguro de un vehículo es
+ * la clase referenciada en la relación 1→1 unidireccional
  */
-
 public class SeguroVehicular {
+
     private Long id;
     private Boolean eliminado;
     private String aseguradora;
@@ -79,13 +78,13 @@ public class SeguroVehicular {
 
     @Override
     public String toString() {
-        return "SeguroVehicular{" +
-                "id=" + id +
-                ", eliminado=" + eliminado +
-                ", aseguradora='" + aseguradora + '\'' +
-                ", nroPoliza='" + nroPoliza + '\'' +
-                ", cobertura=" + cobertura +
-                ", vencimiento=" + vencimiento +
-                '}';
+        return "SeguroVehicular{"
+                + "id=" + id
+                + ", eliminado=" + eliminado
+                + ", aseguradora='" + aseguradora + '\''
+                + ", nroPoliza='" + nroPoliza + '\''
+                + ", cobertura=" + cobertura
+                + ", vencimiento=" + vencimiento
+                + '}';
     }
 }
