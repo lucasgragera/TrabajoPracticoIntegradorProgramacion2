@@ -1,13 +1,13 @@
-/Users/lucasgragera/Desktop/tuputn/segundosemestre/programacionll/10- Acceso a Base de Datos/TrabajoFinalIntegradorPII/src/main/java/com/mycompany/trabajofinalintegradorpii/TrabajoFinalIntegradorPII.java
-/Users/lucasgragera/Desktop/tuputn/segundosemestre/programacionll/10- Acceso a Base de Datos/TrabajoFinalIntegradorPII/src/main/java/config/DatabaseConnection.java
-/Users/lucasgragera/Desktop/tuputn/segundosemestre/programacionll/10- Acceso a Base de Datos/TrabajoFinalIntegradorPII/src/main/java/dao/GenericDao.java
-/Users/lucasgragera/Desktop/tuputn/segundosemestre/programacionll/10- Acceso a Base de Datos/TrabajoFinalIntegradorPII/src/main/java/dao/SeguroVehicularDao.java
-/Users/lucasgragera/Desktop/tuputn/segundosemestre/programacionll/10- Acceso a Base de Datos/TrabajoFinalIntegradorPII/src/main/java/dao/VehiculoDao.java
-/Users/lucasgragera/Desktop/tuputn/segundosemestre/programacionll/10- Acceso a Base de Datos/TrabajoFinalIntegradorPII/src/main/java/entities/Cobertura.java
-/Users/lucasgragera/Desktop/tuputn/segundosemestre/programacionll/10- Acceso a Base de Datos/TrabajoFinalIntegradorPII/src/main/java/entities/SeguroVehicular.java
-/Users/lucasgragera/Desktop/tuputn/segundosemestre/programacionll/10- Acceso a Base de Datos/TrabajoFinalIntegradorPII/src/main/java/entities/Vehiculo.java
-/Users/lucasgragera/Desktop/tuputn/segundosemestre/programacionll/10- Acceso a Base de Datos/TrabajoFinalIntegradorPII/src/main/java/exception/ServiceException.java
-/Users/lucasgragera/Desktop/tuputn/segundosemestre/programacionll/10- Acceso a Base de Datos/TrabajoFinalIntegradorPII/src/main/java/exception/ValidationException.java
-/Users/lucasgragera/Desktop/tuputn/segundosemestre/programacionll/10- Acceso a Base de Datos/TrabajoFinalIntegradorPII/src/main/java/service/GenericService.java
-/Users/lucasgragera/Desktop/tuputn/segundosemestre/programacionll/10- Acceso a Base de Datos/TrabajoFinalIntegradorPII/src/main/java/service/SeguroVehicularService.java
-/Users/lucasgragera/Desktop/tuputn/segundosemestre/programacionll/10- Acceso a Base de Datos/TrabajoFinalIntegradorPII/src/main/java/service/VehiculoService.java
+C:\Users\ignac\Desktop\TrabajoPracticoIntegradorProgramacion2\TrabajoFinalIntegradorPII\src\main\java\com\mycompany\trabajofinalintegradorpii\TrabajoFinalIntegradorPII.java
+C:\Users\ignac\Desktop\TrabajoPracticoIntegradorProgramacion2\TrabajoFinalIntegradorPII\src\main\java\config\DatabaseConnection.java
+C:\Users\ignac\Desktop\TrabajoPracticoIntegradorProgramacion2\TrabajoFinalIntegradorPII\src\main\java\dao\GenericDao.java
+C:\Users\ignac\Desktop\TrabajoPracticoIntegradorProgramacion2\TrabajoFinalIntegradorPII\src\main\java\dao\SeguroVehicularDao.java
+C:\Users\ignac\Desktop\TrabajoPracticoIntegradorProgramacion2\TrabajoFinalIntegradorPII\src\main\java\dao\VehiculoDao.java
+C:\Users\ignac\Desktop\TrabajoPracticoIntegradorProgramacion2\TrabajoFinalIntegradorPII\src\main\java\entities\Cobertura.java
+C:\Users\ignac\Desktop\TrabajoPracticoIntegradorProgramacion2\TrabajoFinalIntegradorPII\src\main\java\entities\SeguroVehicular.java
+C:\Users\ignac\Desktop\TrabajoPracticoIntegradorProgramacion2\TrabajoFinalIntegradorPII\src\main\java\entities\Vehiculo.java
+C:\Users\ignac\Desktop\TrabajoPracticoIntegradorProgramacion2\TrabajoFinalIntegradorPII\src\main\java\exception\ServiceException.java
+C:\Users\ignac\Desktop\TrabajoPracticoIntegradorProgramacion2\TrabajoFinalIntegradorPII\src\main\java\exception\ValidationException.java
+C:\Users\ignac\Desktop\TrabajoPracticoIntegradorProgramacion2\TrabajoFinalIntegradorPII\src\main\java\service\GenericService.java
+C:\Users\ignac\Desktop\TrabajoPracticoIntegradorProgramacion2\TrabajoFinalIntegradorPII\src\main\java\service\SeguroVehicularService.java
+C:\Users\ignac\Desktop\TrabajoPracticoIntegradorProgramacion2\TrabajoFinalIntegradorPII\src\main\java\service\VehiculoService.java
