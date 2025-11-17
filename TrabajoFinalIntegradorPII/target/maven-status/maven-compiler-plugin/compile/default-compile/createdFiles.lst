@@ -1,6 +1,7 @@
 config\DatabaseConnection.class
 entities\Cobertura.class
 dao\SeguroVehicularDao.class
+main\AppMenu.class
 service\GenericService.class
 service\SeguroVehicularService.class
 entities\SeguroVehicular.class
