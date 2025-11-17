@@ -4,7 +4,6 @@ import config.DatabaseConnection;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-
 public class TrabajoFinalIntegradorPII {
 
     public static void main(String[] args) {
@@ -32,5 +31,5 @@ public class TrabajoFinalIntegradorPII {
             // e.printStackTrace(); // Descomenta si quieres ver el rastro completo
 
         }
-    }
+    
 }
