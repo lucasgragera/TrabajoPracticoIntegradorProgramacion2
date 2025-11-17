@@ -1,5 +1,6 @@
 
-USE vehiculos_db;
+CREATE DATABASE GestionSeguros;
+USE GestionSeguros;
 CREATE TABLE SeguroVehicular (
     id BIGINT PRIMARY KEY AUTO_INCREMENT,
     eliminado BOOLEAN DEFAULT FALSE,
@@ -16,6 +17,6 @@ CREATE TABLE Vehiculo (
     modelo VARCHAR(50) NOT NULL,
     anio INT,
     nroChasis VARCHAR(50) NOT NULL UNIQUE,
-    seguro_id BIGINT,
+    seguro_id BIGINT UNIQUE,
     FOREIGN KEY (seguro_id) REFERENCES SeguroVehicular(id)
 );
