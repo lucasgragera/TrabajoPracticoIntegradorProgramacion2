@@ -30,8 +30,8 @@ public class TrabajoFinalIntegradorPII {
             VehiculoDao vehiculoDAO = new VehiculoDao();
 
             // B. Services (Lógica de Negocio)
-            SeguroVehicularService seguroService = new SeguroVehicularService(seguroDAO, vehiculoDAO);
-            VehiculoService vehiculoService = new VehiculoService(vehiculoDAO);
+            SeguroVehicularService seguroService = new SeguroVehicularService();
+            VehiculoService vehiculoService = new VehiculoService();
 
             // C. Menú / UI (Capa de Presentación)
             AppMenu menu = new AppMenu(vehiculoService, seguroService);
