@@ -14,3 +14,4 @@ Luego hay que correr IngresarRegistros.sql, donde se cargan diferentes registros
 - **Lucas Gragera** – Comisión: 7
 - **Bruno Croppi** – Comisión: 7    
 ## Enlace video: 
+https://youtu.be/ADRZkm4oAos
