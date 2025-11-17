@@ -164,8 +164,7 @@ public class AppMenu {
 
             // 1. Llamamos al servicio
             SeguroVehicular s = seguroService.getById(id);
-
-            // 2. ¡CORRECCIÓN! Verificamos si es null
+            
             if (s == null) {
                 // Usamos el constructor (String, Throwable) como en el error anterior
                 throw new ServiceException("No se encontró un Seguro con ID " + id, null);
@@ -212,8 +211,7 @@ public class AppMenu {
 
             // 2. Buscar el seguro.
             SeguroVehicular s = seguroService.getById(id);
-
-            // ¡CORRECCIÓN! Verificamos si es null
+            
             if (s == null) {
                 throw new ServiceException("No se encontró un Seguro con ID " + id, null);
             }
@@ -281,8 +279,6 @@ public class AppMenu {
             LocalDate vencimiento = LocalDate.parse(scanner.nextLine());
 
             SeguroVehicular seguro = new SeguroVehicular(null, false, aseguradora, nroPoliza, coberturaEnum, vencimiento);
-
-            // Llamar al service de seguro
             seguroService.insertar(seguro);
 
             System.out.println("✅ ÉXITO: Seguro creado con ID: " + seguro.getId());
@@ -306,9 +302,7 @@ public class AppMenu {
             System.out.print("Ingrese ID del Seguro para dar de baja lógica: ");
             long id = scanner.nextLong();
             scanner.nextLine();
-
-            // (Opcional: Deberías verificar si este seguro está en uso por un vehículo)
-            seguroService.eliminar(id); // Implementado en el Service
+            seguroService.eliminar(id); 
             System.out.println("✅ ÉXITO: Seguro ID " + id + " marcado como eliminado.");
 
         } catch (InputMismatchException e) {
@@ -330,19 +324,13 @@ public class AppMenu {
             String aseguradora = scanner.nextLine();
             System.out.print("Nro. Póliza (UNIQUE): ");
             String nroPoliza = scanner.nextLine();
-
-            // ==========================================================
-            // INICIO DE LA CORRECCIÓN
-            // ==========================================================
+            
             System.out.print("Cobertura (RC, TERCEROS, TODO_RIESGO): ");
             String coberturaStr = scanner.nextLine().toUpperCase(); // 1. Leer el String
 
             // 2. Convertir el String al Enum correspondiente
             // Esto lanzará IllegalArgumentException si el string no es válido
             Cobertura coberturaEnum = Cobertura.valueOf(coberturaStr);
-            // ==========================================================
-            // FIN DE LA CORRECCIÓN
-            // ==========================================================
 
             System.out.print("Fecha de Vencimiento (AAAA-MM-DD): ");
             LocalDate vencimiento = LocalDate.parse(scanner.nextLine());
@@ -377,12 +365,9 @@ public class AppMenu {
         } catch (DateTimeParseException e) {
             System.err.println("❌ ERROR: Formato de fecha inválido. Use AAAA-MM-DD.");
 
-            // ==========================================================
-            // CORRECCIÓN: Añadir este bloque catch
-            // ==========================================================
+
         } catch (IllegalArgumentException e) {
             System.err.println("❌ ERROR: Cobertura inválida. Valores permitidos: RC, TERCEROS, TODO_RIESGO.");
-            // ==========================================================
 
         } catch (ServiceException e) {
             System.err.println("❌ ERROR TRANSACCIONAL: " + e.getMessage());
@@ -401,15 +386,11 @@ public class AppMenu {
 
             Vehiculo v = vehiculoService.getById(id);
 
-            // ==========================================================
-            // ¡CORRECCIÓN AQUÍ!
-            // ==========================================================
             // 1. Verificamos si el servicio devolvió 'null'
             if (v == null) {
                 // 2. Si es null, lanzamos la excepción que el 'catch' ya espera
                 throw new ServiceException("No se encontró un Vehículo con ID " + id, null);
             }
-            // ==========================================================
 
             // Si el código llega aquí, 'v' NO es null.
             System.out.println("\n✅ Vehículo encontrado:");
@@ -489,13 +470,9 @@ public class AppMenu {
             System.out.print("Nuevo Año (Actual: " + v.getAnio() + "): ");
             String anioStr = scanner.nextLine();
             if (!anioStr.isEmpty()) {
-                v.setAnio(Integer.parseInt(anioStr)); // Puede lanzar NumberFormatException
+                v.setAnio(Integer.parseInt(anioStr));
             }
 
-            // Nota: La lógica para actualizar el SEGURO es más compleja 
-            // (requeriría buscar seguros) y se omite en este menú simple.
-            // Este método actualiza los campos directos del vehículo.
-            // 4. Llamar al Service para que aplique los cambios
             vehiculoService.actualizar(v);
             System.out.println("✅ ÉXITO: Vehículo ID " + id + " actualizado.");
 
